@@ -5,6 +5,7 @@ import be.ipam.openbar.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -23,6 +24,12 @@ public class IngredientController {
     @GetMapping(path = "/ingredient", params = "name")
     public IngredientDto getIngredientByName(String name) {
         return ingredientService.getIngredientByName(name);
+    }
+
+    //search ingredient by name
+    @GetMapping(path = "/ingredient", params = "search")
+    public List<IngredientDto> searchIngredientByName(String search) {
+        return ingredientService.searchIngredientByName(search);
     }
 
     //save ingredient

@@ -6,7 +6,9 @@ import be.ipam.openbar.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
@@ -28,5 +30,9 @@ public class IngredientService {
     //save ingredient
     public IngredientDto saveIngredient(IngredientDto ingredientDto) {
         return ingredientMapper.toDto(ingredientRepository.save(ingredientMapper.toEntity(ingredientDto)));
+    }
+
+    public List<IngredientDto> searchIngredientByName(String search) {
+        return ingredientRepository.findByNameContainingIgnoreCase(search).stream().map(ingredientMapper::toDto).collect(Collectors.toList());
     }
 }

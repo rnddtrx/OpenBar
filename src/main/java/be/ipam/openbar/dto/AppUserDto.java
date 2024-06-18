@@ -3,6 +3,7 @@ package be.ipam.openbar.dto;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,8 +13,10 @@ import java.util.UUID;
 public class AppUserDto implements Serializable {
     UUID id;
     String username;
+    String password;
     String email;
     String firstName;
     String lastName;
-    RoleDto appRoles;
+    boolean enabled;
+    List<AppRoleDto> appRoles;
 }

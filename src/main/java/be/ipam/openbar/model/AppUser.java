@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,5 +28,5 @@ public class AppUser {
     @Column
     private boolean enabled;
     @OneToMany
-    private HashSet<AppRole> appRoles;
+    private List<AppRole> appRoles;
 }

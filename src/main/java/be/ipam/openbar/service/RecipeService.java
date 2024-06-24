@@ -37,14 +37,8 @@ public class RecipeService {
     @Transactional
     public RecipeDto saveRecipe(RecipeDto recipeDto) {
         Recipe newRecipe = recipeMapper.toEntity(recipeDto);
-        // Before saving the recipe, we need to save the quantities or else will get a transient object exception.
-        // A transient object is an object that has just been instantiated and is not associated with a Hibernate session.
-        // To make it persistent, we need to associate it with a session.
-        // We can do this by saving the quantities first.
         quantityService.saveAllQuantities(newRecipe.getQuantities());
-        // We also need to save the steps.
         stepService.saveAllSteps(newRecipe.getSteps());
-        // Now we can save the recipe.
         return recipeMapper.toDto(recipeRepository.save(newRecipe));
     }
 
